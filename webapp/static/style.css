@@ -29,8 +29,21 @@ input {
      color:blue;
 }
 
+.place {
+    margin: 20px auto;
+    width: 400px;
+}
 .buttons {
-    width: 500px;
+    width: 400px; 
     display: flex;
+
     flex-wrap: wrap;
+}
+
+.button {
+    width: 98px;
+    height: 98px;
+    font-size: 30px;
+    border-radius: 5px;
+    margin: 1px;
 }
