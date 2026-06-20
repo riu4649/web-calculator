@@ -12,19 +12,22 @@ input {
 }
 
 .flex {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    justify-items: end;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    height:auto;
     background-color:antiquewhite;
 }
 
 .history {
      background-color:aqua;
+     height:auto;
      width: 400px;
+     margin: 0;
 }
 
 .right {
-    margin: 20px auto;
+    height:auto;
     width: 400px;
     background-color:aquamarine;
 }
