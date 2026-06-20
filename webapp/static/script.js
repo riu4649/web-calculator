@@ -14,5 +14,12 @@ function addOperator(operator) {
 
 function calculate() {
             let display = document.getElementById("display");
-            display.value = eval(display.value);
+            if (display.value !== "") {
+                display.value = eval(display.value);
+            }
+}
+
+function backspace() {
+            let display = document.getElementById("display");
+            display.value = display.value.slice(0, display.value.length - 1);
 }

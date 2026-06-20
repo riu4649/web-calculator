@@ -7,24 +7,7 @@
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 <body>
-    <h1>練習中</h1>
-    <div class="calculator">
-        <form>
-            <p>数字1<input type="number" name="num1"></p>
-            <p>数字2<input type="number" name="num2"></p>
-            <select name="operator">
-                <option value="+">+</option>
-                <option value="-">-</option>
-                <option value="*">*</option>
-                <option value="/">/</option>
-            </select>
-            <button>計算</button>
-            {% if result %}
-            <p class="result">結果: {{ result }}</p>
-            {% endif %}
-        </form>
-    </div>
-    
+    <h1>WEB電卓</h1>
     <div class="place">
         <input type="text" id="display" readonly>
         <div class="buttons">
@@ -44,7 +27,8 @@
             <button class="button" onclick="clearDisplay()">C</button>
             <button class="button" onclick="calculate()">=</button>
             <button class="button" onclick="addOperator('+')">+</button>
-
+            <button class="button" onclick="backspace('')">←
+</button>
         </div>
     </div>
 </body>
