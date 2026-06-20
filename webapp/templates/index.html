@@ -8,9 +8,13 @@
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 <body>
-    <h1>WEB電卓</h1>
+    <header>
+        <h1 id="header">WEB電卓</h1>
+    </header>
     <div class="flex">
-        <h2 class="history">履歴</h2>
+        <div id="history">
+            <h2>履歴</h2>
+        </div>
 
         <div class="right">
             <input type="text" id="display" readonly>
