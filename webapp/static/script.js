@@ -1,5 +1,6 @@
 let aftercalculate = false;
 let count = 0;
+fontsizechange = 6;
 console.log(aftercalculate);
 
 function addNumber(number) {
@@ -39,7 +40,7 @@ function backspace() {
             display.value = display.value.slice(0, display.value.length - 1);
 }
 
-function fontsize() {
+/*function fontsize() {
     let display = document.getElementById("display");
 
     if (display.value.length <= 15) {
@@ -51,34 +52,47 @@ function fontsize() {
     } else if (display.value.length > 15) {
         display.style.fontSize = "29px";
     }
-}; 
+}; */
 
-function fontsize2() {
+function fontsizeincrease() {
     let display = document.getElementById("display");
-
-    if (display.value.length <= 15) {
-        display.style.fontSize = "35px";
-    } else if (display.value.length > (15 + count * 5)) {
-        display.style.fontSize = (display.style.fontSize - (6 - count)) + "px";
+    if (display.value.length > (15 + count * 5) && display.value.length <= 45) {
+        display.style.fontSize = (35 - fontsizechange) + "px";
         count += 1;
+        fontsizechange += (6 - count);
+    }
+    if (display.value.length === 50) {
+        alert("これ以上は表示されません");
     }
 }
-display.value.length > (15 + count * 5)
+
+function fontsizedecrease() {
+    let display = document.getElementById("display");
+    if (display.value.length <= 15) {
+        display.style.fontSize = "35px";
+    } else if (display.value.length <= (15 + count * 5)) {
+        fontsizechange -= (6 - count);
+        count -= 1;
+        display.style.fontSize = (35 - fontsizechange) + "px";
+        }
+    }
+
 
 document.addEventListener("keydown", function(event) {
-    console.log(event.key);
+    console.log("count: " +count);
+    console.log("size: " + fontsizechange);
     if ("0123456789".includes(event.key)) {
         addNumber(event.key);
-        fontsize();
+        fontsizeincrease();
     }
     
     if ("+-*/".includes(event.key)) {
         addOperator(event.key);
-        fontsize()
+        fontsizeincrease()
     }
     if (event.key === "Backspace") {
         backspace();
-        fontsize();
+        fontsizedecrease();
     }
     if (event.key === "Enter") {
         calculate();
