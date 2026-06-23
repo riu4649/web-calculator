@@ -1,13 +1,12 @@
 # Web Calculator
 
-Flaskで作成した電卓アプリです。
+HTML,CSS,JavaScriptで作成した電卓アプリです
 
 ## 使用技術
 
-- Python
-- Flask
 - HTML
 - CSS
+- JS
 - Git
 
 ## 機能
