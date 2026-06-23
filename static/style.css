@@ -29,6 +29,12 @@ h2 {
     overflow: wrap;
 }
 
+.history-text::after {
+    content: url("delete.svg");
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
 #display {
     width: 400px;
     height: 60px;
