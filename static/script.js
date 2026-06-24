@@ -1,8 +1,11 @@
 let aftercalculate = false;
 let count = 0;
-fontsizechange = 6;
+const historyArea = document.getElementById("history");
+console.log(historyArea);
+let fontsizechange = 6;
 console.log(aftercalculate);
 
+//文字を追加
 function addNumber(number) {
             let display = document.getElementById("display");
             if (aftercalculate === true) {
@@ -14,46 +17,46 @@ function addNumber(number) {
             }
         }
 
+//演算子を追加
 function addOperator(operator) {
             let display = document.getElementById("display");
             display.value = display.value + " " + operator + " ";
 }
 
+
+//表示をクリア
 function clearDisplay() {
             let display = document.getElementById("display");
             display.value = "";
         }
 
+
+//計算をする
 function calculate() {
             let display = document.getElementById("display");
             let history = document.getElementById("history");
             let result = display.value;
             aftercalculate = true;
             if (display.value !== "") {
-                history.innerHTML += "<p class='history-text'>" + result + " = " + eval(result) + "</p>";
+                historyArea.innerHTML += `
+                <p class="history-text">
+                ${result} =
+                <span class="history-answer">${eval(result)}</span>
+                <button class="history-delete"><img src="static/delete.png" alt="delete"></button>
+                </p>
+                `;
                 display.value = eval(display.value);
             }
 }
 
+
+//一文字削除
 function backspace() {
             let display = document.getElementById("display");
             display.value = display.value.slice(0, display.value.length - 1);
 }
 
-/*function fontsize() {
-    let display = document.getElementById("display");
-
-    if (display.value.length <= 15) {
-        display.style.fontSize = "35px";
-    } else if (display.value.length > 25) {
-        display.style.fontSize = "20px";
-    } else if (display.value.length > 20) {
-        display.style.fontSize = "24px";
-    } else if (display.value.length > 15) {
-        display.style.fontSize = "29px";
-    }
-}; */
-
+//文字サイズを増加させる
 function fontsizeincrease() {
     let display = document.getElementById("display");
     if (display.value.length > (15 + count * 5) && display.value.length <= 45) {
@@ -66,6 +69,7 @@ function fontsizeincrease() {
     }
 }
 
+//文字サイズを減少させる
 function fontsizedecrease() {
     let display = document.getElementById("display");
     if (display.value.length <= 15) {
@@ -77,7 +81,7 @@ function fontsizedecrease() {
         }
     }
 
-
+//キーボードの処理
 document.addEventListener("keydown", function(event) {
     console.log("count: " +count);
     console.log("size: " + fontsizechange);
@@ -96,5 +100,18 @@ document.addEventListener("keydown", function(event) {
     }
     if (event.key === "Enter") {
         calculate();
+    }
+});
+
+//履歴からの入力の処理
+historyArea.addEventListener("click", function(event) {
+    let display = document.getElementById("display");
+
+    if (event.target.classList.contains("history-answer")) {
+        display.value += event.target.textContent;
+    }
+    if (event.target.closest(".history-delete")) {
+        const historyItem = event.target.closest(".history-text");
+        historyItem.remove();
     }
 });
