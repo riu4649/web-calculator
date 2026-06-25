@@ -6,15 +6,41 @@ let fontsizechange = 6;
 console.log(aftercalculate);
 
 //文字を追加
-function addNumber(number) {
+function addDisplay(number) {
             let display = document.getElementById("display");
-            if (aftercalculate === true) {
-                display.value = number;
-                aftercalculate = false;
+            console.log(display.value)
+            if("0123456789.".includes(number)){
+                if (aftercalculate === true || display.value == 0) {
+                    display.value = number;
+                    aftercalculate = false;
+                }
+                else {
+                    display.value = display.value + number;
+                }
             }
+
             else {
-                display.value = display.value + number;
+                if (number === "start") {
+                    if (aftercalculate === true || display.value == 0) {
+                    display.value = '(';
+                    aftercalculate = false;
+                }
+                else {
+                    display.value = display.value + '(';
+                }
+                }
+
+                else {
+                    if (aftercalculate === true || display.value == 0) {
+                    display.value = ')';
+                    aftercalculate = false;
+                }
+                else {
+                    display.value = display.value + ')';
+                }
+                }
             }
+                
         }
 
 //演算子を追加
@@ -22,7 +48,6 @@ function addOperator(operator) {
             let display = document.getElementById("display");
             display.value = display.value + " " + operator + " ";
 }
-
 
 //表示をクリア
 function clearDisplay() {
@@ -83,10 +108,11 @@ function fontsizedecrease() {
 
 //キーボードの処理
 document.addEventListener("keydown", function(event) {
+    console.log(event.key)
     console.log("count: " +count);
     console.log("size: " + fontsizechange);
-    if ("0123456789".includes(event.key)) {
-        addNumber(event.key);
+    if ("0123456789.()".includes(event.key)) {
+        addDisplay(event.key);
         fontsizeincrease();
     }
     

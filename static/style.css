@@ -1,5 +1,6 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #e5e7eb;
 }
 
 header {
@@ -48,7 +49,7 @@ h2 {
 }
 
 #history {
-     background-color:#E2E8F0;
+     background-color: #d6dde8;
      height:auto;
      width: 400px;
 }
@@ -69,26 +70,56 @@ h2 {
     display: block;
 }
 
-.right {
+.calculator {
     height:auto;
     width: 400px;
-    background-color:#E2E8F0;
 }
+
+#display {
+    border: none;
+    border-radius: 8px;
+}
+
 .buttons {
-    width: 400px; 
-    display: flex;
-    flex-wrap: wrap;
+    width: 400px;
+    height: 500px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    background-color: #f3f4f6;
 }
 
 button {
     padding: 20px;
 }
 
-.button {
+.button, .top-button-b {
     width: 98px;
     height: 98px;
-    font-size: 30px;
     border-radius: 5px;
     margin: 1px;
+}
+
+.top-button-b {
+    grid-column: span 2;
+    grid-row: span 2;
+    font-size: 25px;
+}
+
+.top-button-s {
+    width: 98px;
+    height: 49px;
+    font-size: 20px;
+    border-radius: 5px;
+    margin: 1px;
+    padding: 0;
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.button {
+    grid-column: span 2;
+    grid-row: span 2;
+    font-size: 30px;
 }
 
