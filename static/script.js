@@ -1,14 +1,11 @@
 let aftercalculate = false;
 let count = 0;
 const historyArea = document.getElementById("history");
-console.log(historyArea);
 let fontsizechange = 6;
-console.log(aftercalculate);
 
 //文字を追加
 function addDisplay(number) {
             let display = document.getElementById("display");
-            console.log(display.value)
             if("0123456789.".includes(number)){
                 if (aftercalculate === true || display.value == 0) {
                     display.value = number;
@@ -22,31 +19,37 @@ function addDisplay(number) {
             else {
                 if (number === "start") {
                     if (aftercalculate === true || display.value == 0) {
-                    display.value = '(';
-                    aftercalculate = false;
-                }
-                else {
-                    display.value = display.value + '(';
-                }
+                        display.value = '(';
+                        aftercalculate = false;
+                    }
+                    else {
+                        display.value = display.value + '(';
+                    }
                 }
 
                 else {
                     if (aftercalculate === true || display.value == 0) {
-                    display.value = ')';
-                    aftercalculate = false;
-                }
-                else {
-                    display.value = display.value + ')';
-                }
+                        display.value = ')';
+                        aftercalculate = false;
+                    }
+                    else {
+                        display.value = display.value + ')';
+                    }
                 }
             }
-                
+            fontsizeincrease();
         }
 
 //演算子を追加
 function addOperator(operator) {
+            console.log(operator)
             let display = document.getElementById("display");
-            display.value = display.value + " " + operator + " ";
+            let lastword = display.value.at(-1);
+            if (lastword != " ") {
+                display.value = display.value + " " + operator + " ";
+            fontsizeincrease();
+            }
+            
 }
 
 //表示をクリア
@@ -78,7 +81,14 @@ function calculate() {
 //一文字削除
 function backspace() {
             let display = document.getElementById("display");
-            display.value = display.value.slice(0, display.value.length - 1);
+            let lastword = display.value.at(-1);
+            if (lastword === " ") {
+                display.value = display.value.slice(0,display.value.length -3);
+            }
+            else {
+                display.value = display.value.slice(0, display.value.length - 1);
+            }
+            fontsizedecrease();
 }
 
 //文字サイズを増加させる
@@ -108,21 +118,23 @@ function fontsizedecrease() {
 
 //キーボードの処理
 document.addEventListener("keydown", function(event) {
-    console.log(event.key)
-    console.log("count: " +count);
-    console.log("size: " + fontsizechange);
-    if ("0123456789.()".includes(event.key)) {
+    if ("0123456789.".includes(event.key)) {
         addDisplay(event.key);
-        fontsizeincrease();
     }
     
+    if (event.key == "(") {
+        addDisplay("start");
+    }
+
+    if (event.key == ")") {
+        addDisplay("end");
+    }
+
     if ("+-*/".includes(event.key)) {
         addOperator(event.key);
-        fontsizeincrease()
     }
     if (event.key === "Backspace") {
         backspace();
-        fontsizedecrease();
     }
     if (event.key === "Enter") {
         calculate();
