@@ -19,19 +19,15 @@ h1 {
 }
 
 h2 {
-    font-size: 30px;
+    display: flex;
+    position: sticky;
+    top: 0;
+    font-size: 32px;
     padding-top: 10px;
     padding-left: 20px;
     background-color: #aab6cf;
 }
-
-.history-text {
-    margin-left: 10px;
-    font-size: 20px;
-    overflow: wrap;
-}
-
-
+   
 #display {
     width: 400px;
     height: 60px;
@@ -48,14 +44,28 @@ h2 {
     height:auto;
 }
 
-#history {
+.history-container {
      background-color: #d6dde8;
      height:auto;
-     width: 400px;
+     min-height: 200px;
+     max-height: 570px;
+     width: 90%;
+     max-width: 400px;
+     overflow: auto;
+}
+
+.history-text {
+    padding-left: 10px;
+    margin-bottom: 5px;
+    font-size: 25px;
+    overflow: wrap;
 }
 
 .history-answer {
     cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: #6d85b9;
+    text-decoration-thickness: 2px;
 }
 
 .history-delete {
@@ -71,8 +81,9 @@ h2 {
 }
 
 .calculator {
+    width: 100%;
+    max-width: 400px;
     height:auto;
-    width: 400px;
 }
 
 #display {
@@ -81,8 +92,8 @@ h2 {
 }
 
 .buttons {
-    width: 400px;
-    height: 500px;
+    width: 80%;
+    max-width: 400px;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(10, 1fr);
@@ -91,7 +102,17 @@ h2 {
 
 button {
     padding: 20px;
+    transition: all 0.1s ease;
 }
+
+button:hover {
+    filter: brightness(0.85);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
 
 .button, .top-button-b {
     width: 98px;
@@ -123,3 +144,41 @@ button {
     font-size: 30px;
 }
 
+@media (max-width: 900px) {
+
+    .flex {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    #history,
+    .calculator,
+    .buttons,
+    #display {
+        width: 90vw;
+        max-width: 400px;
+    }
+
+    #history {
+        min-height: 560px;
+    }
+
+    .button,
+    .top-button-b {
+        width: auto;
+        height: 80px;
+    }
+
+    .top-button-s {
+        width: auto;
+        height: 40px;
+    }
+
+    header {
+        height: 70px;
+    }
+    h1 {
+        font-size: 30px;
+    }
+    
+}

@@ -62,17 +62,17 @@ function clearDisplay() {
 //計算をする
 function calculate() {
             let display = document.getElementById("display");
-            let history = document.getElementById("history");
             let result = display.value;
             aftercalculate = true;
             if (display.value !== "") {
-                historyArea.innerHTML += `
+                historyArea.innerHTML = `
                 <p class="history-text">
                 ${result} =
                 <span class="history-answer">${eval(result)}</span>
                 <button class="history-delete"><img src="static/delete.png" alt="delete"></button>
                 </p>
-                `;
+                `
+                + historyArea.innerHTML;
                 display.value = eval(display.value);
             }
 }
